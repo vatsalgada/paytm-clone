@@ -16,15 +16,11 @@ const signupBody = zod.object({
 })
 
 router.post("/signup", async (req, res) => {
-    const { success } = signupBody.safeParse(req.body);
+    const { success } = signupBody.safeParse(req.body)
     if (!success) {
-        console.log(success)
-        console.log(req.body);
         return res.status(411).json({
             message: "Email already taken / Incorrect inputs"
-            
         })
-        
     }
 
     const existingUser = await User.findOne({
@@ -45,15 +41,29 @@ router.post("/signup", async (req, res) => {
     })
     const userId = user._id;
 
+		/// ----- Create new account ------
+
+    await Account.create({
+        userId,
+        balance: 1 + Math.random() * 10000
+    })
+
+		/// -----  ------
+
     const token = jwt.sign({
         userId
-    }, "simple");
+    }, JWT_SECRET);
 
     res.json({
         message: "User created successfully",
         token: token
     })
 })
+
+
+
+
+
 
 const signinBody = zod.object({
     username: zod.string().email(),
