@@ -1,6 +1,7 @@
 import userlogo from '../assets/user.png'
 import { Heading } from '../components/Heading'
 import { InputBox } from '../components/InputBox'
+import { Users } from '../components/User'
 
 export function Dashboard(){
     return (
@@ -14,10 +15,12 @@ export function Dashboard(){
                 </div>
             </div>
         </div>
-        <hr class="h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
+        <hr className="h-px bg-gray-200 border-0 dark:bg-gray-700"></hr>
         <div className='font-bold p-3'>Your Balance $5000</div>
-        <div className='p-3'><InputBox label={"Users"}></InputBox></div>
-        
+        {/* <div className='p-3'><InputBox label={"Users"} placeholder={'Search users...'}></InputBox></div> */}
+        <div className='p-2'>
+        <Users></Users>
+        </div>
         </>
      
       )

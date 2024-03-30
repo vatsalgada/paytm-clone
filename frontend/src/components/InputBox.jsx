@@ -1,8 +1,8 @@
-export function InputBox({label, placeholder}){
+export function InputBox({label, placeholder, onChange, type}){
     return(
         <>
         <p className="font-bold pt-2">{label}</p>
-        <input className="border-2 rounded-md justify-center p-1 w-full" placeholder={placeholder}></input>
+        <input onChange={onChange} type={type } className="border-2 rounded-md justify-center p-1 w-full" placeholder={placeholder}></input>
         </>
     )
 }
