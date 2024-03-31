@@ -3,11 +3,12 @@ import userlogo from '../assets/user.png'
 import { Subheading } from "../components/Subheading";
 import { InputBox } from "../components/InputBox";
 import { Button } from "../components/Button";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
 export function SendMoney(){
+       const navigate = useNavigate();
        let [searchParams, setSearchParams] = useSearchParams();
        let id = searchParams.get("Id");
        let name = searchParams.get("name")
@@ -46,9 +47,11 @@ export function SendMoney(){
             axios.request(config)
             .then((response) => {
               console.log(JSON.stringify(response.data));
+              navigate("/Status?status=success");              
             })
             .catch((error) => {
               console.log(error);
+              navigate("/status")
             });
        }}></Button>
      
