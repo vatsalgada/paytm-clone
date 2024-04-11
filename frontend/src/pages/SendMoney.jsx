@@ -5,15 +5,17 @@ import { InputBox } from "../components/InputBox";
 import { Button } from "../components/Button";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { useState } from "react";
 
 
 export function SendMoney(){
        const navigate = useNavigate();
+       const [amount, setAmount] = useState(0);
        let [searchParams, setSearchParams] = useSearchParams();
        let id = searchParams.get("Id");
        let name = searchParams.get("name")
        let transferData = JSON.stringify({
-              "amount": 100,
+              "amount": amount,
               "to": id
             });
        let config = {
@@ -41,7 +43,11 @@ export function SendMoney(){
         </div>
         
       
-       <InputBox label={'Amount'} placeholder={'Enter Amount'}></InputBox>
+       <InputBox label={'Amount'} placeholder={'Enter Amount'} onChange={(e) => {
+              setAmount(e.target.value);
+       }}>
+       </InputBox>
+  
        <div className="p-2"></div>
        <Button  label={'Initiate Transfer'} onClick={() => {
             axios.request(config)

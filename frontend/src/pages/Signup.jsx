@@ -8,8 +8,6 @@ import axios from 'axios';
 import { BottomWarning } from "../components/BottomWarning";
 
 
-
-
 export function Signup(){
   const navigate = useNavigate();
     const [firstName, setFirstName]  = useState("")
